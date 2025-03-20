@@ -1,0 +1,47 @@
+server:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  workers: 4
+  request_timeout: 30
+
+database:
+  url: "sqlite:///data.db"
+  pool_size: 5
+  max_overflow: 10
+  timeout: 30
+
+analytics:
+  metrics:
+    - "count"
+    - "average"
+    - "sum"
+    - "min"
+    - "max"
+  interval: 60
+  batch_size: 1000
+  cache_ttl: 300
+
+ai:
+  model_name: "claude-2"
+  temperature: 0.7
+  max_tokens: 2000
+  context_window: 4000
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "logs/insightflow.log"
+
+data_sources:
+  example_stream:
+    name: "Example Stream"
+    type: "stream"
+    config:
+      url: "ws://example.com/stream"
+      auth_token: ""
+    schema:
+      timestamp: "datetime"
+      value: "float"
+      category: "string"
+    enabled: true
